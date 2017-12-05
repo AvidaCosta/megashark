@@ -183,8 +183,8 @@ return [
             'host' => 'localhost',
             'port' => 25,
             'timeout' => 30,
-            'username' => 'user',
-            'password' => 'secret',
+            'username' => 'root',
+            'password' => '',
             'client' => null,
             'tls' => null,
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
@@ -229,7 +229,7 @@ return [
              * the following line and set the port accordingly
              */
             //'port' => 'non_standard_port_number',
-            'username' => '',
+            'username' => 'root',
             'password' => '',
             'database' => 'megashark',
             'encoding' => 'utf8',
@@ -269,7 +269,7 @@ return [
             'persistent' => false,
             'host' => 'localhost',
             //'port' => 'non_standard_port_number',
-            'username' => '',
+            'username' => 'root',
             'password' => '',
             'database' => 'megashark',
             'encoding' => 'utf8',

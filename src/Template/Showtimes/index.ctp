@@ -46,6 +46,13 @@
                 </td>
             </tr>
             <?php endforeach; ?>
+            
+            
+            
+            
+            
+            
+            
         </tbody>
     </table>
     <div class="paginator">
