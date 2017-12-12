@@ -42,8 +42,8 @@ class RoomsFixture extends TestFixture
             'id' => 1,
             'name' => 'Lorem ipsum dolor sit amet',
             'capacity' => 1,
-            'created' => '2017-11-28 18:49:50',
-            'modified' => '2017-11-28 18:49:50'
+            'created' => '2017-12-12 19:07:06',
+            'modified' => '2017-12-12 19:07:06'
         ],
     ];
 }

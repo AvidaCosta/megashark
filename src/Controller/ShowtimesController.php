@@ -27,7 +27,6 @@ class ShowtimesController extends AppController
 
         $this->set(compact('showtimes'));
         $this->set('_serialize', ['showtimes']);
-        
     }
 
     /**

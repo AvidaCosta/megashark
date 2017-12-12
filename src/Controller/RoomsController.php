@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Rooms Controller
@@ -39,16 +40,75 @@ class RoomsController extends AppController
             'contain' => ['Showtimes']
         ]);
         
-        $showtimestest = $query = $this->Rooms->Showtimes->find('all');
-     //   ->contain(['']);
-        /*$showtimestest = $this->Showtimes->get($id, [
-            'contain' => ['Room']
-            //'conditions' => ['Showtimes.created >' => new DateTime('-10 days')]
-        ]);*/
-        $this->set('seancetest',$showtimestest);
+        $auj = strtotime('today');
+        $aujmoinsun =strtotime('-1day today');
+        $aujmoinsdeux =strtotime('-2days today');
+        $aujmoinstrois =strtotime('-3days today');
+        $aujplusun =strtotime('+1day today');
+        $aujplusdeux =strtotime('+2days today');
+        $aujplustrois =strtotime('+3days today');
+        $aujplusquatre = strtotime('+4days today');
+        
+        $moinstrois = TableRegistry::get('Showtimes')->find()
+            ->where(['room_id ='=> $id])
+            ->where(['start >=' => $aujmoinstrois])
+            ->where(['start <='=> $aujmoinsdeux]);
+            
+        $moinsdeux = TableRegistry::get('Showtimes')->find()
+            ->where(['room_id ='=> $id])
+            ->where(['start >=' => $aujmoinsdeux])
+            ->where(['start <='=> $aujmoinsun]);
+        
+        $moinsun = TableRegistry::get('Showtimes')->find()
+            ->where(['room_id ='=> $id])
+            ->where(['start >=' => $aujmoinsun])
+            ->where(['start <='=> $auj]);
+            
+        $today = TableRegistry::get('Showtimes')->find()
+            ->where(['room_id ='=> $id])
+            ->where(['start >=' => $auj])
+            ->where(['start <='=> $aujplusun]);
+        
+        $plusun = TableRegistry::get('Showtimes')->find()
+            ->where(['room_id ='=> $id])
+            ->where(['start >=' => $aujplusun])
+            ->where(['start <='=> $aujplusdeux]);
+        
+        $plusdeux = TableRegistry::get('Showtimes')->find()
+            ->where(['room_id ='=> $id])
+            ->where(['start >=' => $aujplusdeux])
+            ->where(['start <='=> $aujplustrois]);
+            
+        $plustrois = TableRegistry::get('Showtimes')->find()
+            ->where(['room_id ='=> $id])
+            ->where(['start >=' => $aujplustrois])
+            ->where(['start <='=> $aujplusquatre]);
+        
+        
+        
+        
+        $query = TableRegistry::get('Showtimes')->find()
+            ->where(['room_id ='=> $id])
+            ->where(['start >=' => $aujmoinstrois])
+            ->where(['start <='=> $aujplustrois]);
+       
+       
+       $this->set('moinstrois',$moinstrois);
+       $this->set('moinsdeux',$moinsdeux);
+       $this->set('moinsun',$moinsun);
+       $this->set('auj',$today);
+       $this->set('plusun',$plusun);
+       $this->set('plusdeux',$plusdeux);
+       $this->set('plustrois',$plustrois);  
+       
+       
+       
+        $this->set('seances',$query);
         $this->set('room', $room);
         $this->set('_serialize', ['room']);
- 
+        
+        
+        
     }
 
     /**
