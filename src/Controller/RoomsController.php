@@ -92,16 +92,27 @@ class RoomsController extends AppController
             ->where(['room_id ='=> $id])
             ->where(['start >=' => $aujmoinstrois])
             ->where(['start <='=> $aujplustrois]);
+             
+       
+       $this->set('semaine',[0=> $moinstrois,
+                                1=> $moinsdeux,
+                                2=> $moinsun,
+                                3=> $today,
+                                4=> $plusun,
+                                5=> $plusdeux,
+                                6=> $plustrois]);
+        
+        $this->set('jours',[0=> date('Y-m-d', $aujmoinstrois),
+                                1=> date('Y-m-d', $aujmoinsdeux),
+                                2=> date('Y-m-d', $aujmoinsun),
+                                3=> date('Y-m-d', $auj),
+                                4=> date('Y-m-d', $aujplusun),
+                                5=> date('Y-m-d', $aujplusdeux),
+                                6=> date('Y-m-d', $aujplustrois)]);
+                                
        
        
-       $this->set('moinstrois',$moinstrois);
-       $this->set('moinsdeux',$moinsdeux);
-       $this->set('moinsun',$moinsun);
-       $this->set('auj',$today);
-       $this->set('plusun',$plusun);
-       $this->set('plusdeux',$plusdeux);
-       $this->set('plustrois',$plustrois);  
-       
+     
        
        
         $this->set('seances',$query);

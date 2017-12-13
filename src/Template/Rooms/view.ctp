@@ -113,48 +113,29 @@
      <div class="related">
         <h4><?= __('Séances de cette semaine') ?></h4>
         <?php if (!empty($room->showtimes)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <td>
-            <?php foreach($seances as $showtimes):?>
-                <?php if ($showtimes->id == 5): ?>
-                    <tr>
+        <table  cellpadding="0" cellspacing="0">
+            
+                <tr>
+                    <?php foreach ($jours as $day): ?>
                     
-                        <td><?= h($showtimes->id) ?></td>
-                                    
-                    </tr>
-                <?php endif; ?>
-                
-                <tr>
+                     <th scope="col"><?= h($day) ?></th>
+                            
+                    <?php endforeach; ?>  
+        
                 </tr>
-                
-                <tr>
-                </tr>
-                
-                <tr>
-                </tr>
-                
-                <tr>
-                </tr>
-                
-                <tr>
-                </tr>
-                
-                <tr>
-                </tr>
-                
-                <tr>
-                </tr>
-                
-                <tr>
-                </tr>
-                
-                <tr>
-                </tr>
-                
-                <tr>
-                </tr>
-            <?php endforeach; ?>
-            </td>
+            <?php foreach ($jours as $day): ?>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <?php endforeach; ?>  
         </table>
         <?php endif; ?>
     </div>
