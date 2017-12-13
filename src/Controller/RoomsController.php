@@ -84,9 +84,10 @@ class RoomsController extends AppController
             ->where(['start >=' => $aujplustrois])
             ->where(['start <='=> $aujplusquatre]);
         
-        
-        
-        
+
+
+
+
         $query = TableRegistry::get('Showtimes')->find()
             ->where(['room_id ='=> $id])
             ->where(['start >=' => $aujmoinstrois])
