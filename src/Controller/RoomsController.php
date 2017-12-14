@@ -40,49 +40,50 @@ class RoomsController extends AppController
             'contain' => ['Showtimes']
         ]);
         
-        $auj = strtotime('today');
-        $aujmoinsun =strtotime('-1day today');
-        $aujmoinsdeux =strtotime('-2days today');
-        $aujmoinstrois =strtotime('-3days today');
-        $aujplusun =strtotime('+1day today');
-        $aujplusdeux =strtotime('+2days today');
-        $aujplustrois =strtotime('+3days today');
-        $aujplusquatre = strtotime('+4days today');
+        $lundi = strtotime('Monday this week');
+        $mardi =strtotime('+1day Monday this week');
+        $mercredi =strtotime('+2days Monday this week');
+        $jeudi =strtotime('+3days Monday this week');
+        $vendredi =strtotime('+4days Monday this week');
+        $samedi =strtotime('+5days Monday this week');
+        $dimanche =strtotime('+6days Monday this week');
+        $lundisuivant = strtotime('+7days Monday this week');
         
-        $moinstrois = TableRegistry::get('Showtimes')->find()
+        $lundiagenda = TableRegistry::get('Showtimes')->find()
             ->where(['room_id ='=> $id])
-            ->where(['start >=' => $aujmoinstrois])
-            ->where(['start <='=> $aujmoinsdeux]);
+            ->where(['start >=' => $lundi])
+            ->where(['start <'=> $mardi]);
+        
+        
+        $mardiagenda = TableRegistry::get('Showtimes')->find()
+            ->where(['room_id ='=> $id])
+            ->where(['start >=' => $mardi])
+            ->where(['start <'=> $mercredi]);
+        
+        $mercrediagenda = TableRegistry::get('Showtimes')->find()
+            ->where(['room_id ='=> $id])
+            ->where(['start >=' => $mercredi])
+            ->where(['start <'=> $jeudi]);
             
-        $moinsdeux = TableRegistry::get('Showtimes')->find()
+        $jeudiagenda = TableRegistry::get('Showtimes')->find()
             ->where(['room_id ='=> $id])
-            ->where(['start >=' => $aujmoinsdeux])
-            ->where(['start <='=> $aujmoinsun]);
+            ->where(['start >=' => $jeudi])
+            ->where(['start <'=> $vendredi]);
         
-        $moinsun = TableRegistry::get('Showtimes')->find()
+        $vendrediagenda = TableRegistry::get('Showtimes')->find()
             ->where(['room_id ='=> $id])
-            ->where(['start >=' => $aujmoinsun])
-            ->where(['start <='=> $auj]);
+            ->where(['start >=' => $vendredi])
+            ->where(['start <'=> $samedi]);
+        
+        $samediagenda = TableRegistry::get('Showtimes')->find()
+            ->where(['room_id ='=> $id])
+            ->where(['start >=' => $samedi])
+            ->where(['start <'=> $dimanche]);
             
-        $today = TableRegistry::get('Showtimes')->find()
+        $dimancheagenda = TableRegistry::get('Showtimes')->find()
             ->where(['room_id ='=> $id])
-            ->where(['start >=' => $auj])
-            ->where(['start <='=> $aujplusun]);
-        
-        $plusun = TableRegistry::get('Showtimes')->find()
-            ->where(['room_id ='=> $id])
-            ->where(['start >=' => $aujplusun])
-            ->where(['start <='=> $aujplusdeux]);
-        
-        $plusdeux = TableRegistry::get('Showtimes')->find()
-            ->where(['room_id ='=> $id])
-            ->where(['start >=' => $aujplusdeux])
-            ->where(['start <='=> $aujplustrois]);
-            
-        $plustrois = TableRegistry::get('Showtimes')->find()
-            ->where(['room_id ='=> $id])
-            ->where(['start >=' => $aujplustrois])
-            ->where(['start <='=> $aujplusquatre]);
+            ->where(['start >=' => $dimanche])
+            ->where(['start <'=> $lundisuivant]);
         
 
 
@@ -90,25 +91,26 @@ class RoomsController extends AppController
 
         $query = TableRegistry::get('Showtimes')->find()
             ->where(['room_id ='=> $id])
-            ->where(['start >=' => $aujmoinstrois])
-            ->where(['start <='=> $aujplustrois]);
+            ->where(['start >=' => $lundi])
+            ->where(['start <='=> $lundisuivant]);
              
        
-       $this->set('semaine',[0=> $moinstrois,
-                                1=> $moinsdeux,
-                                2=> $moinsun,
-                                3=> $today,
-                                4=> $plusun,
-                                5=> $plusdeux,
-                                6=> $plustrois]);
-        
-        $this->set('jours',[0=> date('Y-m-d', $aujmoinstrois),
-                                1=> date('Y-m-d', $aujmoinsdeux),
-                                2=> date('Y-m-d', $aujmoinsun),
-                                3=> date('Y-m-d', $auj),
-                                4=> date('Y-m-d', $aujplusun),
-                                5=> date('Y-m-d', $aujplusdeux),
-                                6=> date('Y-m-d', $aujplustrois)]);
+       $this->set('semaine',[0=> $lundiagenda,
+                                1=> $mardiagenda,
+                                2=> $mercrediagenda,
+                                3=> $jeudiagenda,
+                                4=> $vendrediagenda,
+                                5=> $samediagenda,
+                                6=> $dimancheagenda]);
+    
+                                
+        $this->set('jours',[0=> "Lundi, ".date('d-m-Y', $lundi),
+                                1=> "Mardi, ".date('d-m-Y', $mardi),
+                                2=> "Mercredi, ".date('d-m-Y', $mercredi),
+                                3=> "Jeudi, ".date('d-m-Y', $jeudi),
+                                4=> "Vendredi, ".date('d-m-Y', $vendredi),
+                                5=> "Samedi, ".date('d-m-Y', $samedi),
+                                6=> "Dimanche, ".date('d-m-Y', $dimanche)]);
                                 
        
        

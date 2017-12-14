@@ -123,19 +123,27 @@
                     <?php endforeach; ?>  
         
                 </tr>
-            <?php foreach ($jours as $day): ?>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <?php endforeach; ?>  
+            
+            
+                <tr>
+                    <?php foreach ($semaine as $day): ?>
+                        <?php foreach ($day as $seance): ?>
+            
+                            
+                            <?php if($seance->start >= new DateTime("2017-12-12 20:00") && $seance->start <= new DateTime("2017-12-12 21:00")):?>  
+                            <tr>
+                            <td><?=h($seance->id)?></td>   
+                            </tr>
+                            <?php endif; ?>
+                            
+                            
+                        <?php endforeach; ?>                 
+                    <?php endforeach; ?> 
+                </tr>
+                
+                
+                
+            
         </table>
         <?php endif; ?>
     </div>
